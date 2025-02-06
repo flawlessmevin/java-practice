@@ -14,7 +14,7 @@ public class Main {
 
         //read input file and split to 2 lists - left and right
         try{
-            BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("src/input.txt"));
             String line;
 
             while((line = br.readLine()) != null){

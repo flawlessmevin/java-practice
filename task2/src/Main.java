@@ -14,7 +14,7 @@ public class Main {
 
         //read input file and split each report to list of levels and put each to reports list
         try{
-            BufferedReader br = new BufferedReader(new FileReader("input.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("src/input.txt"));
             String line;
             while ((line = br.readLine()) != null ) {
                 String[] parts = line.split("\\s+");
