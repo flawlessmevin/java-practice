@@ -21,24 +21,18 @@ public class Main {
                 String[] parts = line.split("\\s+");
                 left.add(Integer.parseInt(parts[0]));
                 right.add(Integer.parseInt(parts[1]));
-
             }
 
         } catch (IOException e){
             System.out.println(e);
-            }
+        }
 
         //part 1
         Collections.sort(left);
         Collections.sort(right);
 
         for (int i = 0; i < left.size(); i++){
-            if (left.get(i) > right.get(i)){
-                distance += left.get(i) - right.get(i);
-            }
-            else{
-                distance += right.get(i) - left.get(i);
-            }
+            distance += Math.abs(right.get(i) - left.get(i));
         }
         //first part answer
         System.out.println("distance: " + distance);
@@ -46,6 +40,26 @@ public class Main {
 
 
         //part 2
+
+        /*
+        for (int i = 0; i < left.size(); i++){
+            int left_number = left.get(i);
+            int count = Collections.frequency(right, left_number);
+            similarity_score += left_number * count;
+        }
+        */
+
+        HashMap<Integer, Integer> countMap = new HashMap<>();
+        for (int right_number : right){
+            countMap.put(right_number, countMap.getOrDefault(right_number, 0) + 1);
+        }
+        for (int left_number : left) {
+            int count = countMap.getOrDefault(left_number, 0);
+            similarity_score += left_number * count;
+        }
+
+
+        /*
         for (int i = 0; i < left.size(); i++){
             int count = 0;
             int left_number = left.get(i);
@@ -56,9 +70,15 @@ public class Main {
                 }
             }
             similarity_score += left_number * count;
-            }
+        }
+        */
+
+
+
+
         //part 2 answer
-        System.out.println("similarity_score: " + similarity_score);
+        System.out.println("similarity score: " + similarity_score);
+
 
     }
 }
