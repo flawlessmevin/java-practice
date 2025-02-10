@@ -71,16 +71,15 @@ public class Main {
     public static boolean check_safety(List<Integer>report) {
         int levels_count = report.size();
         boolean up = (report.get(0) < report.get(1));
-        boolean safe = true;
-
+        
         for (int i = 1; i < levels_count; i++) {
             int step = report.get(i) - report.get(i-1);
             if (up) {
-                if (step > 3 || step < 1) safe = false;
+                if (step > 3 || step < 1) return false;
             }else{
-                if (step < -3 || step > -1) safe = false;
+                if (step < -3 || step > -1) return false;
             }
         }
-        return safe;
+        return true;
     }
 }
