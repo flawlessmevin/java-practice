@@ -70,27 +70,15 @@ public class Main {
     //check safety function
     public static boolean check_safety(List<Integer>report) {
         int levels_count = report.size();
-        boolean up = false;
+        boolean up = (report.get(0) < report.get(1));
         boolean safe = true;
 
-        if (report.get(0) < report.get(1)) {
-            up = true;
-        }
-
         for (int i = 1; i < levels_count; i++) {
-            int current_level = report.get(i);
-            int previous_level = report.get(i - 1);
-
-            if (up){
-                int increase = current_level - previous_level;
-                if (increase != 1 & increase !=2 & increase !=3){
-                    safe = false;
-                }
-            } else{
-                int decrease = current_level - previous_level;
-                if (decrease != -1 & decrease != -2 & decrease != -3){
-                    safe = false;
-                }
+            int step = report.get(i) - report.get(i-1);
+            if (up) {
+                if (step > 3 || step < 1) safe = false;
+            }else{
+                if (step < -3 || step > -1) safe = false;
             }
         }
         return safe;
