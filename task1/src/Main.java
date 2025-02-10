@@ -40,15 +40,6 @@ public class Main {
 
 
         //part 2
-
-        /*
-        for (int i = 0; i < left.size(); i++){
-            int left_number = left.get(i);
-            int count = Collections.frequency(right, left_number);
-            similarity_score += left_number * count;
-        }
-        */
-
         HashMap<Integer, Integer> countMap = new HashMap<>();
         for (int right_number : right){
             countMap.put(right_number, countMap.getOrDefault(right_number, 0) + 1);
@@ -58,24 +49,7 @@ public class Main {
             similarity_score += left_number * count;
         }
 
-
-        /*
-        for (int i = 0; i < left.size(); i++){
-            int count = 0;
-            int left_number = left.get(i);
-
-            for (int j = 0; j < right.size(); j++){
-                if (left_number == right.get(j)){
-                    count ++;
-                }
-            }
-            similarity_score += left_number * count;
-        }
-        */
-
-
-
-
+        
         //part 2 answer
         System.out.println("similarity score: " + similarity_score);
 
