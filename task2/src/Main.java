@@ -48,13 +48,11 @@ public class Main {
 
 
 
-
         //part 2
         for (List<Integer> report : unsafe_reports) {
             for (int i = 0; i < report.size(); i++) {
-                List<Integer> report_copy = new ArrayList<>(report);
-                report_copy.remove(i);
-                boolean safe = check_safety(report_copy);
+
+                boolean safe = check_safety(report, i);
                 if (safe) {
                     safe_reports_count2++;
                     break;
@@ -67,12 +65,22 @@ public class Main {
 
     }
 
-    //check safety function
-    public static boolean check_safety(List<Integer>report) {
+
+
+
+
+    //check safety functions
+    public static boolean check_safety(List<Integer> report) {
+        //for part 1, there is no remove_index
+        return check_safety(report, -1);
+    }
+
+    public static boolean check_safety(List<Integer>report, int remove_index) {
         int levels_count = report.size();
         boolean up = (report.get(0) < report.get(1));
-        
+
         for (int i = 1; i < levels_count; i++) {
+            if(i==remove_index) continue;
             int step = report.get(i) - report.get(i-1);
             if (up) {
                 if (step > 3 || step < 1) return false;
